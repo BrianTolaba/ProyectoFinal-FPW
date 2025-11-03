@@ -1,0 +1,45 @@
+/* Posiciona el submenú al costado */
+.dropdown-submenu {
+  position: relative;
+}
+
+/* Estilo para escritorio */
+@media (min-width: 992px) {
+  .dropdown-submenu .submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    z-index: 1000;
+    min-width: 160px;
+  }
+
+  .dropdown-submenu:hover .submenu {
+    display: block;
+  }
+}
+
+/* Estilo para móviles */
+@media (max-width: 991px) {
+  .dropdown-submenu .submenu {
+    position: static;
+    display: block;
+    padding-left: 1rem;
+    border: none;
+    background-color: transparent;
+  }
+}
+
+
+/* Mostrar al pasar el mouse */
+.dropdown-submenu:hover .submenu {
+  display: block;
+}
+
+/* Asegura que el submenú no tape el principal */
+.navbar .dropdown-menu {
+  overflow: visible;
+}
