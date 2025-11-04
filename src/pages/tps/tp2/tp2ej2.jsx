@@ -35,43 +35,44 @@ const Tp2Ej2 = () => {
 
     // 3. Renderizado (JSX)
     return (
-        <section className="section-promedio">
-            <h1>Calcular Promedio de Tres Números</h1>
-            <p>Ingrese tres números enteros para que podamos promediarlos.</p>
+        <div className="container my-5">
+            <div className="card shadow-lg p-4 mx-auto border-success" style={{ maxWidth: '400px' }}>
+                <h1 className="h3 text-center mb-4 text-success">Calcular Promedio de Tres Números</h1>
+                <p className="text-center text-muted">Ingrese tres números para promediarlos.</p>
 
-            <form>
-                {[
-                    { label: 'Primer Número:', setter: setNum1, value: num1 },
-                    { label: 'Segundo Número:', setter: setNum2, value: num2 },
-                    { label: 'Tercer Número:', setter: setNum3, value: num3 }
-                ].map((input, index) => (
-                    <div key={index} style={{ marginBottom: '10px' }}>
-                        <label>{input.label}</label>
-                        <input
-                            type="number"
-                            value={input.value}
-                            onChange={(e) => input.setter(e.target.value)}
-                            // Usar el valor por defecto del HTML si aplica
-                            className="input-numero" 
-                        />
+                <form>
+                    {[
+                        { label: 'Primer Número:', setter: setNum1, value: num1 },
+                        { label: 'Segundo Número:', setter: setNum2, value: num2 },
+                        { label: 'Tercer Número:', setter: setNum3, value: num3 }
+                    ].map((input, index) => (
+                        <div key={index} className="mb-3">
+                            <label className="form-label">{input.label}</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                value={input.value}
+                                onChange={(e) => input.setter(e.target.value)}
+                            />
+                        </div>
+                    ))}
+                </form>
+
+                <button onClick={calcularPromedio} className="btn btn-success w-100 mt-3">
+                    Calcular Promedio
+                </button>
+
+                {/* Muestra el error si existe */}
+                {error && <div className="alert alert-danger mt-3">{error}</div>}
+
+                {/* Muestra el resultado */}
+                {promedio !== null && (
+                    <div className="alert alert-info mt-3 fw-bold text-center">
+                        El promedio es de: {promedio}
                     </div>
-                ))}
-            </form>
-
-            <button onClick={calcularPromedio}>
-                Calcular Promedio
-            </button>
-
-            {/* Muestra el error si existe */}
-            {error && <p style={{ color: 'red', marginTop: '15px' }}>{error}</p>}
-
-            {/* Muestra el resultado */}
-            {promedio !== null && (
-                <p style={{ color: 'blue', fontWeight: 'bold', marginTop: '15px' }}>
-                    El promedio es de: {promedio}
-                </p>
-            )}
-        </section>
+                )}
+            </div>
+        </div>
     );
 };
 

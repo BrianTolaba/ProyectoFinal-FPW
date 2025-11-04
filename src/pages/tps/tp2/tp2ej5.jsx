@@ -39,46 +39,51 @@ const Tp2Ej5 = () => {
         setResultado(`${nombre} tu paga este mes será ${pagoMensual.toFixed(2)}`);
     };
 
-    return (
-        <div className="contenedor" style={{ maxWidth: '500px', margin: 'auto' }}>
-            <section className="seccion-formulario">
-                <div className="titulos">
-                    <h1>Simulador de Salario Mensual</h1>
-                    <h2>Ingresa tus datos y calcula tu pago mensual</h2>
+    // ... (código JavaScript/React es el mismo)
+
+return (
+    <div className="container mt-5">
+        <div className="card shadow-lg p-4 mx-auto" style={{ maxWidth: '550px' }}>
+            <div className="titulos text-center mb-4">
+                <h1 className="h3 text-purple">Simulador de Salario Mensual</h1>
+                <h2 className="h5 text-muted">Ingresa tus datos y calcula tu pago mensual</h2>
+            </div>
+            
+            <form className="formulario">
+                {/* Inputs de Formulario (Todos usan 'form-control' y están en 'mb-3') */}
+                <div className="mb-3">
+                    <label htmlFor="nombre" className="form-label">Nombre</label>
+                    <input type="text" id="nombre" className="form-control" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 </div>
-                
-                <form className="formulario">
-                    {/* Input: Nombre */}
-                    <label htmlFor="nombre">Nombre</label>
-                    <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
 
-                    {/* Input: Horas Trabajadas */}
-                    <label htmlFor="horasTrabajadas">Horas Trabajadas al mes</label>
-                    <input type="text" id="horasTrabajadas" value={horasTrabajadas} onChange={(e) => setHorasTrabajadas(e.target.value)} />
+                <div className="mb-3">
+                    <label htmlFor="horasTrabajadas" className="form-label">Horas Trabajadas al mes</label>
+                    <input type="text" id="horasTrabajadas" className="form-control" value={horasTrabajadas} onChange={(e) => setHorasTrabajadas(e.target.value)} />
+                </div>
 
-                    {/* Input: Pago por Hora */}
-                    <label htmlFor="pagoPorHora">Pago por hora</label>
-                    <input type="text" id="pagoPorHora" value={pagoPorHora} onChange={(e) => setPagoPorHora(e.target.value)} />
-                </form>
+                <div className="mb-3">
+                    <label htmlFor="pagoPorHora" className="form-label">Pago por hora</label>
+                    <input type="text" id="pagoPorHora" className="form-control" value={pagoPorHora} onChange={(e) => setPagoPorHora(e.target.value)} />
+                </div>
+            </form>
 
-                <button id="calcular" onClick={calcularPago} style={{ padding: '10px 20px', cursor: 'pointer', marginTop: '10px' }}>
-                    Calcular pago
-                </button>
-                
-                {/* Muestra el resultado */}
-                {resultado && (
-                    <p id="resultadoSuma" style={{ 
-                        marginTop: '15px', 
-                        fontWeight: 'bold',
-                        // Muestra el color rojo si detecta el mensaje de "MENTIROSO"
-                        color: resultado.includes("MENTIROSO") ? 'red' : 'green' 
-                    }}>
-                        {resultado}
-                    </p>
-                )}
-            </section>
+            <button id="calcular" onClick={calcularPago} className="btn btn-primary w-100 mt-3">
+                Calcular pago
+            </button>
+            
+            {/* Muestra el resultado */}
+            {resultado && (
+                <p 
+                    id="resultadoSuma" 
+                    
+                    className={`alert mt-3 text-center fw-bold ${resultado.includes("MENTIROSO") ? 'alert-danger' : 'alert-success'}`}
+                >
+                    {resultado}
+                </p>
+            )}
         </div>
-    );
+    </div>
+);
 };
 
 export default Tp2Ej5;

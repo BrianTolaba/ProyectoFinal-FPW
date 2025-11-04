@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import './tp2ej1.css'; // Descomenta si tienes un archivo CSS específico para este componente.
+
 
 const Tp2Ej1 = () => {
     // 1. Hook de Estado para los inputs
@@ -39,36 +39,40 @@ const Tp2Ej1 = () => {
         setResultado(mensaje);
     };
 
-    // 3. Renderizado del Componente (JSX)
-    return (
-        // Usamos la clase de la sección del HTML original para mantener estilos
-        <section className="section-formulario"> 
-            {/* Título original del HTML */}
-            <h1>Comparador de números 1000</h1> 
-            
-            <form className="formulario">
-                {/* Input: Primer Número */}
-                <label htmlFor="numero1">Primer Número:</label>
-                <input 
-                    type="number" 
-                    id="numero1"
-                    value={numero1} 
-                    onChange={(e) => setNumero1(e.target.value)}
-                />
+   
 
-                {/* Input: Segundo Número */}
-                <label htmlFor="numero2">Segundo Número:</label>
-                <input 
-                    type="number" 
-                    id="numero2"
-                    value={numero2} 
-                    onChange={(e) => setNumero2(e.target.value)}
-                />
+return (
+    // Usa card y container de Bootstrap
+    <div className="container mt-5">
+        <div className="card shadow-sm p-4 mx-auto" style={{ maxWidth: '450px' }}>
+            <h1 className="h3 text-center mb-4 text-primary">Comparador de números 1000</h1>
+            
+            <form>
+                <div className="mb-3">
+                    <label htmlFor="numero1" className="form-label">Primer Número:</label>
+                    <input 
+                        type="number" 
+                        id="numero1"
+                        className="form-control" // Clase de input de Bootstrap
+                        value={numero1} 
+                        onChange={(e) => setNumero1(e.target.value)}
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="numero2" className="form-label">Segundo Número:</label>
+                    <input 
+                        type="number" 
+                        id="numero2"
+                        className="form-control" // Clase de input de Bootstrap
+                        value={numero2} 
+                        onChange={(e) => setNumero2(e.target.value)}
+                    />
+                </div>
             </form>
             
-            {/* Conexión de la función de React al botón */}
             <button 
-                className="boton" 
+                className="btn btn-primary w-100 mt-3" // Botón primario y ancho completo
                 onClick={compararNumeros}
             >
                 Comparar Números
@@ -76,12 +80,17 @@ const Tp2Ej1 = () => {
 
             {/* Muestra el resultado */}
             {resultado && (
-                <p style={{ color: error ? 'red' : 'green', marginTop: '15px', fontWeight: 'bold' }}>
+                <p 
+                    // Alerta de éxito o peligro (rojo/verde)
+                    className={`alert mt-3 text-center fw-bold ${error ? 'alert-danger' : 'alert-success'}`}
+                >
                     {resultado}
                 </p>
             )}
-        </section>
-    );
+        </div>
+    </div>
+);
 };
+
 
 export default Tp2Ej1;

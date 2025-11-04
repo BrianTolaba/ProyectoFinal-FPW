@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Lógica pura: La función original del JS (resolver) se mantiene, adaptando los inputs/outputs.
+
 const resolver = (num1Str, num2Str, resStr) => {
     // Convierte todo a mayúsculas para manejar 'x' o 'X'
     const N1 = num1Str.toUpperCase();
@@ -46,41 +46,44 @@ const Tp3Ej1 = () => {
     };
 
     return (
-        <section className="suma-incognita">
-            <h2>Resolver suma con X</h2>
+        <div className="container my-5">
+            <div className="card shadow-sm p-4 mx-auto border-danger" style={{ maxWidth: '350px' }}>
+                <h2 className="h4 text-center mb-4 text-danger">Desafío: Suma con Incógnita 'X'</h2>
 
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px' }}>
-                {/* Primer Número */}
-                <label>Primer número:</label>
-                <input type="text" placeholder="Ej: 1X3" value={num1} onChange={(e) => setNum1(e.target.value)} />
+                <form className="d-flex flex-column gap-3">
+                    {/* Primer Número */}
+                    <div className="form-floating">
+                        <input type="text" className="form-control" id="num1" placeholder="Ej: 1X3" value={num1} onChange={(e) => setNum1(e.target.value)} />
+                        <label htmlFor="num1">Primer número:</label>
+                    </div>
 
-                {/* Segundo número */}
-                <label>Segundo número:</label>
-                <input type="text" placeholder="Ej: 23X" value={num2} onChange={(e) => setNum2(e.target.value)} />
+                    {/* Segundo número */}
+                    <div className="form-floating">
+                        <input type="text" className="form-control" id="num2" placeholder="Ej: 23X" value={num2} onChange={(e) => setNum2(e.target.value)} />
+                        <label htmlFor="num2">Segundo número:</label>
+                    </div>
 
-                {/* Resultado */}
-                <label>Resultado:</label>
-                <input type="text" placeholder="Ej: 4X7" value={res} onChange={(e) => setRes(e.target.value)} />
-            </form>
+                    {/* Resultado */}
+                    <div className="form-floating">
+                        <input type="text" className="form-control" id="res" placeholder="Ej: 4X7" value={res} onChange={(e) => setRes(e.target.value)} />
+                        <label htmlFor="res">Resultado:</label>
+                    </div>
+                </form>
 
-            <button onClick={manejarResolver} style={{ marginTop: '15px', padding: '10px' }}>
-                Resolver
-            </button>
+                <button onClick={manejarResolver} className="btn btn-danger w-100 mt-4">
+                    Resolver
+                </button>
 
-            {/* Muestra el resultado */}
-            {solucion && (
-                <p 
-                    id="solucion" 
-                    style={{ 
-                        marginTop: '15px', 
-                        fontWeight: 'bold', 
-                        color: solucion.includes("No se") ? 'red' : 'green' 
-                    }}
-                >
-                    {solucion}
-                </p>
-            )}
-        </section>
+                {/* Muestra el resultado */}
+                {solucion && (
+                    <div 
+                        className={`alert mt-3 text-center fw-bold ${solucion.includes("No se") ? 'alert-warning text-dark' : 'alert-success'}`}
+                    >
+                        {solucion}
+                    </div>
+                )}
+            </div>
+        </div>
     );
 };
 

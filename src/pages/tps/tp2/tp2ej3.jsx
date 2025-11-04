@@ -60,32 +60,35 @@ const Tp2Ej3 = () => {
         }
     };
 
-    return (
-        <section className="section-formulario">
-            <h1>Ingresa una cadena de caracteres</h1>
-            <p>La cadena debe ser de ? y/o números (estos entre 0 - 4).</p>
-            <p>Los signos de pregunta serán reemplazados por la suma de los números adyacentes.</p>
+   return (
+        <div className="container my-5">
+            <div className="card shadow-sm p-4 mx-auto border-warning" style={{ maxWidth: '600px' }}>
+                <h1 className="h4 text-warning">Ingresa una cadena de caracteres</h1>
+                <p className="text-muted">La cadena debe ser de ? y/o números (0-4). Los '?' se suman con adyacentes.</p>
 
-            <input 
-                type="text" 
-                placeholder="Ej: !??3?4?"
-                value={inputCadena}
-                onChange={(e) => setInputCadena(e.target.value)}
-                style={{ width: '300px', padding: '10px' }}
-            />
-            
-            <button 
-                onClick={manejarCalculo} 
-                style={{ marginLeft: '10px', padding: '10px' }}
-            >
-                Calcular
-            </button>
+                <div className="input-group mb-3 mt-4">
+                    <input 
+                        type="text" 
+                        placeholder="Ej: !??3?4?"
+                        className="form-control"
+                        value={inputCadena}
+                        onChange={(e) => setInputCadena(e.target.value)}
+                    />
+                    
+                    <button 
+                        onClick={manejarCalculo} 
+                        className="btn btn-warning text-dark fw-bold" 
+                        type="button"
+                    >
+                        Calcular
+                    </button>
+                </div>
 
-            {/* Muestra error o resultado */}
-            {error && <p style={{ color: 'red', marginTop: '15px', fontWeight: 'bold' }}>{error}</p>}
-            {resultado && <p style={{ color: 'green', marginTop: '15px', fontWeight: 'bold' }}>{resultado}</p>}
-
-        </section>
+                {/* Muestra error o resultado */}
+                {error && <div className="alert alert-danger mt-3">{error}</div>}
+                {resultado && <div className="alert alert-success mt-3">{resultado}</div>}
+            </div>
+        </div>
     );
 };
 

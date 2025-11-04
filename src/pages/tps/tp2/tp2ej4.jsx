@@ -43,44 +43,43 @@ const Tp2Ej4 = () => {
     };
 
     return (
-        <form id="formulario" style={{ maxWidth: '400px', margin: 'auto' }}>
-            <h2>Datos Universitarios</h2>
-            
-            {/* Array para renderizar inputs de forma eficiente */}
-            {[
-                { label: "Nombre:", state: nombre, setter: setNombre, placeholder: "Ingrese su nombre" },
-                { label: "Apellido:", state: apellido, setter: setApellido, placeholder: "Ingrese su apellido" },
-                { label: "Libreta Universitaria:", state: libreta, setter: setLibreta, placeholder: "APU999999" }
-            ].map((field, index) => (
-                <div key={index} style={{ marginBottom: '15px' }}>
-                    <label htmlFor={field.label}>{field.label}</label>
-                    <input 
-                        type="text" 
-                        id={field.label} 
-                        placeholder={field.placeholder}
-                        value={field.state}
-                        onChange={(e) => field.setter(e.target.value)}
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-                    />
-                    {/* El HTML original usaba <br><br> para saltos de línea */}
-                    <div style={{ height: '5px' }}></div>
-                </div>
-            ))}
-            
-            <button 
-                type="button" 
-                onClick={mostrarDatos}
-                style={{ padding: '10px 20px', cursor: 'pointer', marginTop: '10px' }}
-            >
-                Mostrar Datos
-            </button>
-            
-            {/* Muestra el error */}
-            {error && <p style={{ color: 'red', marginTop: '15px', fontWeight: 'bold' }}>{error}</p>}
+        <div className="container my-5">
+            <form className="card shadow-lg p-4 mx-auto border-info" style={{ maxWidth: '450px' }}>
+                <h2 className="text-info text-center mb-4">Datos Universitarios</h2>
+                
+                {/* Campos del formulario */}
+                {[
+                    { label: "Nombre:", state: nombre, setter: setNombre, placeholder: "Ingrese su nombre" },
+                    { label: "Apellido:", state: apellido, setter: setApellido, placeholder: "Ingrese su apellido" },
+                    { label: "Libreta Universitaria:", state: libreta, setter: setLibreta, placeholder: "APU999999" }
+                ].map((field, index) => (
+                    <div key={index} className="mb-3">
+                        <label className="form-label">{field.label}</label>
+                        <input 
+                            type="text" 
+                            className="form-control"
+                            placeholder={field.placeholder}
+                            value={field.state}
+                            onChange={(e) => field.setter(e.target.value)}
+                        />
+                    </div>
+                ))}
+                
+                <button 
+                    type="button" 
+                    onClick={mostrarDatos}
+                    className="btn btn-info text-white w-100 mt-3"
+                >
+                    Mostrar Datos
+                </button>
+                
+                {/* Muestra el error */}
+                {error && <div className="alert alert-danger mt-3">{error}</div>}
 
-            {/* Muestra el resultado */}
-            {resultado && <p style={{ color: 'blue', marginTop: '15px' }}>{resultado}</p>}
-        </form>
+                {/* Muestra el resultado */}
+                {resultado && <div className="alert alert-success mt-3">{resultado}</div>}
+            </form>
+        </div>
     );
 };
 
