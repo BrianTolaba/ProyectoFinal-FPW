@@ -15,14 +15,14 @@ function Layout() {
     };
     return (
         <>
+        
             <header>
-                <h1>Menu</h1>
-                <Navbar expand="lg" className="bg-body-tertiary">
-                    <Container>
+                <Navbar expand="lg" className="bg-body-tertiary ">
+                    <Container className='bg-warning w-100 '>
                         <Navbar.Brand href="/">Trabajo final</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
+                            <Nav className="me-auto ">
                                 <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link href="/games">Games</Nav.Link>
 
@@ -37,6 +37,7 @@ function Layout() {
                                             <NavDropdown.Item href="/tp2ej5">Ejercicio 5</NavDropdown.Item>
                                         </div>
                                     </div>
+
                                     <div className="dropdown-submenu">
                                         <span className="dropdown-item">Trabajo Practico 3</span>
                                         <div className="submenu">
@@ -44,18 +45,32 @@ function Layout() {
                                             <NavDropdown.Item href="/tp3ej2">Ejercicio 2</NavDropdown.Item>
                                         </div>
                                     </div>
-                                    <NavDropdown.Item href="/tp4">Trabajo Practico 4</NavDropdown.Item>
-                                    <NavDropdown.Item href="/tp5">Trabajo Practico 5</NavDropdown.Item>
+
+                                    <div className="dropdown-submenu">
+                                        <span className="dropdown-item">Trabajo Practico 4</span>
+                                        <div className="submenu">
+                                            <NavDropdown.Item href="/tp4ej1">Ejercicio 1</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp4ej2">Ejercicio 2</NavDropdown.Item>
+                                        </div>
+                                    </div>
+
+                                    <div className="dropdown-submenu">
+                                        <span className="dropdown-item">Trabajo Practico 5</span>
+                                        <div className="submenu">
+                                            <NavDropdown.Item href="/tp5ej1">Atrapar la estrella</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp5ej2">Ejercicio 2</NavDropdown.Item>
+                                        </div>
+                                    </div>
+                                    
                                 </NavDropdown>
                                 <Nav.Link href="/aboutus">AboutUs</Nav.Link>
-                                <Nav.Link href="/formulario">Formulario</Nav.Link>
+                                
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
             </header>
             <main>
-                <h1>Cuerpo</h1>
                 <Outlet></Outlet>
             </main>
         </>
