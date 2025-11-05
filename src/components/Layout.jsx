@@ -30,11 +30,11 @@ function Layout() {
                                     <div className="dropdown-submenu">
                                         <span className="dropdown-item">Trabajo Practico 2</span>
                                         <div className="submenu">
-                                            <NavDropdown.Item href="/tp2ej1">Ejercicio 1</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej2">Ejercicio 2</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej3">Ejercicio 3</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej4">Ejercicio 4</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej5">Ejercicio 5</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej1">Comparador de Números</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej2">Registro de mascotas</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej3">Cadena de caracteres (?)</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej4">Formulario de inscripción </NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej5">Simulador de Salario</NavDropdown.Item>
                                         </div>
                                     </div>
 
@@ -49,8 +49,8 @@ function Layout() {
                                     <div className="dropdown-submenu">
                                         <span className="dropdown-item">Trabajo Practico 4</span>
                                         <div className="submenu">
-                                            <NavDropdown.Item href="/tp4ej1">Ejercicio 1</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp4ej2">Ejercicio 2</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp4ej1">Adivina el número</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp4ej2">Juego de botónes</NavDropdown.Item>
                                         </div>
                                     </div>
 
@@ -58,7 +58,7 @@ function Layout() {
                                         <span className="dropdown-item">Trabajo Practico 5</span>
                                         <div className="submenu">
                                             <NavDropdown.Item href="/tp5ej1">Atrapar la estrella</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp5ej2">Ejercicio 2</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp5ej2">Formulario</NavDropdown.Item>
                                         </div>
                                     </div>
                                     
