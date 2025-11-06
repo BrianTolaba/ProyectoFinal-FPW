@@ -1,44 +1,42 @@
 import { useState, useEffect, useCallback, use } from "react";
-import {ModificarJuego} from "./modificarFormulario";
+import { ModificarUsuario } from "./modificarUsuario";
+import Button from 'react-bootstrap/Button';
 //import{BuscarJuego}from "./BuscarJuego";
 
 function FormulariosWeb() {
-  const [juegos, setJuegos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
 
   const [formulario, setFormulario] = useState({
     id: "",
-    nombre: "",
-    precio: "",
-    tipo: "",
+    nombreUsuario: "",
+    email: "",
     estado: true,
     modificado: true,
   });
 
   //tal vez llamar a la BD para cargar los juegos ya almacenados
   useEffect(() => {
-    console.log(juegos);
-  }, [juegos]);
+    console.log(usuarios);
+  }, [usuarios]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormulario({ ...formulario, [name]: value });
   }
 
-  const agregarJuego = (e) => {
+  const agregarUsuario = (e) => {
     e.preventDefault();
-    const nuevoJuego = {
+    const nuevoUsuario = {
       ...formulario,
       id: Date.now(),
-      nombre: formulario.nombre,
-      precio: parseFloat(formulario.precio),
-      tipo: formulario.tipo,
+      nombreUsuario: formulario.nombreUsuario,
+      email: formulario.email,
     }
-    setJuegos([...juegos, nuevoJuego]);
+    setUsuarios([...usuarios, nuevoUsuario]);
     setFormulario({
       id: "",
-      nombre: "",
-      precio: "",
-      tipo: "",
+      nombreUsuario: "",
+      email: "",
       estado: true,
       modificado: true,
     });
@@ -46,55 +44,57 @@ function FormulariosWeb() {
 
   /*
   */
-  const agregar_modificado = (juego_modificado) => {
-    const nuevo_arreglo = juegos.map(j => {
-      if (j.id === juego_modificado.id) {
-        return juego_modificado;
+  const agregar_modificado = (usuario_modificado) => {
+    const nuevo_arreglo = usuarios.map(j => {
+      if (j.id === usuario_modificado.id) {
+        return usuario_modificado;
       }
       return j;
     }
     )
-    setJuegos(nuevo_arreglo)
+    setUsuarios(nuevo_arreglo)
   };
 
-  const modificar=useCallback((j)=>{ //useCollback memoriza la funcion
-      setJuegos((prevJuegos)=>
-      prevJuegos.map(a=>a.id===j.id?{...a,modificado: !a.modificado}:a
+  const modificar = useCallback((j) => { //useCollback memoriza la funcion
+    setUsuarios((prevJuegos) =>
+      prevJuegos.map(a => a.id === j.id ? { ...a, modificado: !a.modificado } : a
       ));
-  },[]);
+  }, []);
   /*
   */
- 
+
   return (
     <>
-      <form onSubmit={agregarJuego}>
-        <input type="text" name="nombre"
-          placeholder="Nombre" value={formulario.nombre} onChange={handleChange} required />
+      <div className="m-3 text-center">
+        <h2>Ingrese un nombre de usuario</h2>
+        <form onSubmit={agregarUsuario}>
+          {/* name debe coincidir con la propiedad en el estado: nombreUsuario */}
+          <input type="text" name="nombreUsuario"
+            placeholder="Nombre de Usuario" value={formulario.nombreUsuario} onChange={handleChange} required />
+          <h2>Ingrese un correo electronico</h2>
+          <input type="text" name="email" placeholder="Correo electronico" value={formulario.email} onChange={handleChange} required />
           
-        <input min="0" type="number" name="precio"
-          placeholder="Precio Unitario" value={formulario.precio} onChange={handleChange} required />
+          <div className="center gap-2 mb-2 m-3">
+            <Button type="sumit" variant="primary" size="lg">Confirmar</Button>
+          </div>
 
-        <input type="text" name="tipo"
-          placeholder="Tipo" value={formulario.tipo} onChange={handleChange} required />
+        </form>
+      </div>
 
-        <button type="submit">Agregar</button>
-
-      </form>
-      {juegos.length > 0 && <h2>Lista</h2>}
+      {usuarios.length > 0 && <h2 className="bg-primary text-center text-light rounded-4">Usuarios hasta ahora</h2>}
       <ul>
-        {juegos.map((j) => (
-          <li key={j.id}>
-            {j.modificado === false ? (
-              <ModificarJuego juego={j} funcion_modificar={agregar_modificado}></ModificarJuego>
+        {usuarios.map((u) => (
+          <li key={u.id}>
+            {u.modificado === false ? (
+              <ModificarUsuario juego={u} funcion_modificar={agregar_modificado}></ModificarUsuario>
             ) : (
-            <div>
-              ID: {j.id} -
-              Nombre: {j.nombre} -
-              Precio: ${j.precio} -
-              Tipo: {j.tipo}
-            </div>
+              <div>
+                ID: {u.id} -
+                Nombre: {u.nombreUsuario} -
+                Email: {u.email} -
+              </div>
             )}
-            <button onClick={() => modificar(j)}>Modificar</button>
+            <Button variant="primary" size="sm" onClick={() => modificar(u)}>Modificar</Button>
           </li>
         ))}
       </ul>

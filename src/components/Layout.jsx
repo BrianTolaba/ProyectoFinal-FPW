@@ -15,14 +15,14 @@ function Layout() {
     };
     return (
         <>
+        
             <header>
-                <h1>Menu</h1>
-                <Navbar expand="lg" className="bg-body-tertiary">
-                    <Container>
+                <Navbar expand="lg" className="bg-body-tertiary ">
+                    <Container className='bg-warning w-100 '>
                         <Navbar.Brand href="/">Trabajo final</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
+                            <Nav className="me-auto ">
                                 <Nav.Link href="/">Home</Nav.Link>
                                 {isAuthenticated && user?.role === 'ADMINISTRATIVO' && (
                                     <Nav.Link href="/games">Games</Nav.Link>
@@ -37,13 +37,14 @@ function Layout() {
                                     <div className="dropdown-submenu">
                                         <span className="dropdown-item">Trabajo Practico 2</span>
                                         <div className="submenu">
-                                            <NavDropdown.Item href="/tp2ej1">Ejercicio 1</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej2">Ejercicio 2</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej3">Ejercicio 3</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej4">Ejercicio 4</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp2ej5">Ejercicio 5</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej1">Comparador de Números</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej2">Registro de mascotas</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej3">Cadena de caracteres (?)</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej4">Formulario de inscripción </NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp2ej5">Simulador de Salario</NavDropdown.Item>
                                         </div>
                                     </div>
+
                                     <div className="dropdown-submenu">
                                         <span className="dropdown-item">Trabajo Practico 3</span>
                                         <div className="submenu">
@@ -51,8 +52,23 @@ function Layout() {
                                             <NavDropdown.Item href="/tp3ej2">Ejercicio 2</NavDropdown.Item>
                                         </div>
                                     </div>
-                                    <NavDropdown.Item href="/tp4">Trabajo Practico 4</NavDropdown.Item>
-                                    <NavDropdown.Item href="/tp5">Trabajo Practico 5</NavDropdown.Item>
+
+                                    <div className="dropdown-submenu">
+                                        <span className="dropdown-item">Trabajo Practico 4</span>
+                                        <div className="submenu">
+                                            <NavDropdown.Item href="/tp4ej1">Adivina el número</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp4ej2">Juego de botónes</NavDropdown.Item>
+                                        </div>
+                                    </div>
+
+                                    <div className="dropdown-submenu">
+                                        <span className="dropdown-item">Trabajo Practico 5</span>
+                                        <div className="submenu">
+                                            <NavDropdown.Item href="/tp5ej1">Atrapar la estrella</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp5ej2">Formulario</NavDropdown.Item>
+                                        </div>
+                                    </div>
+                                    
                                 </NavDropdown>
                                 <Nav.Link href="/aboutus">AboutUs</Nav.Link>
                                 <Nav.Link href="/formulario">Formulario</Nav.Link>
@@ -66,7 +82,6 @@ function Layout() {
                 </Navbar>
             </header>
             <main>
-                <h1>Cuerpo</h1>
                 <Outlet></Outlet>
             </main>
         </>
