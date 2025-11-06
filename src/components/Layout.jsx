@@ -24,8 +24,15 @@ function Layout() {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto ">
                                 <Nav.Link href="/">Home</Nav.Link>
-                                <Nav.Link href="/games">Games</Nav.Link>
-
+                                {isAuthenticated && user?.role === 'ADMINISTRATIVO' && (
+                                    <Nav.Link href="/games">Games</Nav.Link>
+                                )}
+                                <NavDropdown title="Ejemplo" id="ejemplo-dropdown">
+                                    {isAuthenticated && user?.role === 'ADMINISTRATIVO' && 
+                                    (<Nav.Link href="/games">Games2</Nav.Link>)
+                                    || user?.role === 'ALUMNO'
+                                    && (<Nav.Link href="/aboutus">AboutUs2</Nav.Link>)}
+                                </NavDropdown>
                                 <NavDropdown title="Trabajos" id="trabajos-dropdown">
                                     <div className="dropdown-submenu">
                                         <span className="dropdown-item">Trabajo Practico 2</span>
@@ -64,7 +71,11 @@ function Layout() {
                                     
                                 </NavDropdown>
                                 <Nav.Link href="/aboutus">AboutUs</Nav.Link>
-                                
+                                <Nav.Link href="/formulario">Formulario</Nav.Link>
+                                <Nav.Link href="/registro">Registro</Nav.Link>
+                                 {isAuthenticated ?
+                                (<Button variant="outline-success" onClick={manejarLogout}>Logout</Button>)
+                                : (<Nav.Link href="/">Login</Nav.Link>)}
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

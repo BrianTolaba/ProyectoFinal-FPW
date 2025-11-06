@@ -1,16 +1,16 @@
 [
     {
         "id": "admin",
-        "ussername": "admin",
-        "password": "1234",
-        "rol": "ADMINISTRATIVO",
-        "name": "Adminisstrador Principal"
+        "username": "admin",
+        "password": "123",
+        "role": "ADMINISTRATIVO",
+        "name": "Administrador Principal"
     },
     {
         "id": "alumno1",
-        "ussername": "alumno",
-        "password": "1234",
-        "rol": "ALUMNO",
+        "username": "alumno",
+        "password": "123",
+        "role": "ALUMNO",
         "name": "Alumno de Prueba"
     }
 ]
