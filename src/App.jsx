@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from './components/Layout';
 import Error from './pages/Error';
+import NoAutorizado from './pages/NoAutorizado';
 import Games from './pages/Games';
 import AboutUs from './pages/AboutUs';
 import Formulario from './pages/Formulario';
@@ -16,6 +17,7 @@ import Tp3Ej2 from './pages/tps/tp3/tp3ej2';
 import Tp4 from './pages/tps/tp4/tp4';
 import Tp5 from './pages/tps/tp5/tp5';
 import "bootstrap/dist/css/bootstrap.min.css";
+import ProtectorRutas from './components/ProtectorRutas';
 
 function App() {
 
@@ -24,7 +26,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/games" element={<Games />} />
+          <Route path="/games" element={
+            <ProtectorRutas allowedRoles={['ADMINISTRATIVO']}>
+              <Games />
+            </ProtectorRutas>
+          } />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/formulario" element={<Formulario />} />
           <Route path="/tp2ej1" element={<Tp2Ej1 />} />
@@ -36,6 +42,7 @@ function App() {
           <Route path="/tp3ej2" element={<Tp3Ej2 />} />
           <Route path="/tp4" element={<Tp4 />} />
           <Route path="/tp5" element={<Tp5 />} />
+          <Route path="/unauthorized" element={<NoAutorizado />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
