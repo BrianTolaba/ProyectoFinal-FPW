@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, use } from "react";
-import {ModificarUsuario} from "./modificarUsuario";
+import { ModificarUsuario } from "./modificarUsuario";
+import Button from 'react-bootstrap/Button';
 //import{BuscarJuego}from "./BuscarJuego";
 
 function FormulariosWeb() {
@@ -54,43 +55,46 @@ function FormulariosWeb() {
     setUsuarios(nuevo_arreglo)
   };
 
-  const modificar=useCallback((j)=>{ //useCollback memoriza la funcion
-      setUsuarios((prevJuegos)=>
-      prevJuegos.map(a=>a.id===j.id?{...a,modificado: !a.modificado}:a
+  const modificar = useCallback((j) => { //useCollback memoriza la funcion
+    setUsuarios((prevJuegos) =>
+      prevJuegos.map(a => a.id === j.id ? { ...a, modificado: !a.modificado } : a
       ));
-  },[]);
+  }, []);
   /*
   */
- 
+
   return (
     <>
-      <form onSubmit={agregarUsuario}>
-        {/* name debe coincidir con la propiedad en el estado: nombreUsuario */}
-        <input type="text" name="nombreUsuario"
-          placeholder="Nombre" value={formulario.nombreUsuario} onChange={handleChange} required />
+      <div className="m-3 text-center">
+        <h2>Ingrese un nombre de usuario</h2>
+        <form onSubmit={agregarUsuario}>
+          {/* name debe coincidir con la propiedad en el estado: nombreUsuario */}
+          <input type="text" name="nombreUsuario"
+            placeholder="Nombre de Usuario" value={formulario.nombreUsuario} onChange={handleChange} required />
+          <h2>Ingrese un correo electronico</h2>
+          <input type="text" name="email" placeholder="Correo electronico" value={formulario.email} onChange={handleChange} required />
           
-        <input type="text" name="email"
-          placeholder="Su correo pues" value={formulario.email} onChange={handleChange} required />
+          <div className="center gap-2 mb-2 m-3">
+            <Button type="sumit" variant="primary" size="lg">Confirmar</Button>
+          </div>
 
-       
+        </form>
+      </div>
 
-        <button type="submit">Agregar</button>
-
-      </form>
-      {usuarios.length > 0 && <h2>Lista</h2>}
+      {usuarios.length > 0 && <h2 className="bg-primary text-center text-light rounded-4">Usuarios hasta ahora</h2>}
       <ul>
         {usuarios.map((u) => (
           <li key={u.id}>
             {u.modificado === false ? (
               <ModificarUsuario juego={u} funcion_modificar={agregar_modificado}></ModificarUsuario>
             ) : (
-            <div>
-              ID: {u.id} -
-              Nombre: {u.nombreUsuario} -
-              Email: {u.email} -
-            </div>
+              <div>
+                ID: {u.id} -
+                Nombre: {u.nombreUsuario} -
+                Email: {u.email} -
+              </div>
             )}
-            <button onClick={() => modificar(u)}>Modificar</button>
+            <Button variant="primary" size="sm" onClick={() => modificar(u)}>Modificar</Button>
           </li>
         ))}
       </ul>

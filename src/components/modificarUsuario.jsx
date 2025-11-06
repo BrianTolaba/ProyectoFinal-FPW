@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
 
 export const ModificarUsuario = ({ juego: usuario, funcion_modificar , cancelar }) => {
     const [nombreUsuario, setNombreUsuario] = useState("");
@@ -22,10 +23,10 @@ export const ModificarUsuario = ({ juego: usuario, funcion_modificar , cancelar 
             <div>
                 ID = {usuario.id}
                 Nombre = <input placeholder={usuario.nombre} type="text"onChange={cambiaNombreUsuario} />
-                Email = <input placeholder={usuario.email} type="text" onChange={cambiaEmail} />
-
-                <button onClick={() => funcion_modificar(usuario_mod)}>Guardar</button>
+                Email = <input placeholder={usuario.email} type="text" onChange={cambiaEmail} />   
             </div>
+            
+            <Button variant="primary" size="sm" onClick={() => funcion_modificar(usuario_mod)}>Guardar</Button>
         </>
     )
 }
