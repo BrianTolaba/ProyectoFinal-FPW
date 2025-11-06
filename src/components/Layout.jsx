@@ -56,6 +56,7 @@ function Layout() {
                                 </NavDropdown>
                                 <Nav.Link href="/aboutus">AboutUs</Nav.Link>
                                 <Nav.Link href="/formulario">Formulario</Nav.Link>
+                                <Nav.Link href="/registro">Registro</Nav.Link>
                                  {isAuthenticated ?
                                 (<Button variant="outline-success" onClick={manejarLogout}>Logout</Button>)
                                 : (<Nav.Link href="/">Login</Nav.Link>)}
