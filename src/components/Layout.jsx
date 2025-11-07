@@ -70,7 +70,7 @@ function Layout() {
                                     </div>
                                     
                                 </NavDropdown>
-                                <Nav.Link href="/aboutus">AboutUs</Nav.Link>
+                                <Nav.Link href="/aboutus">Nosotros</Nav.Link>
                                 <Nav.Link href="/formulario">Formulario</Nav.Link>
                                 <Nav.Link href="/registro">Registro</Nav.Link>
                                  {isAuthenticated ?
