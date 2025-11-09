@@ -19,7 +19,7 @@ export const Login = () => {
             if (user.role === "ADMINISTRATIVO") {
                 navigate("/formulario", { replace: true });
             } else if (user.role === "ALUMNO") {
-                navigate("/games", { replace: true });
+                navigate("/aboutus", { replace: true });
             } else {
                 navigate("/error", { replace: true });
             }

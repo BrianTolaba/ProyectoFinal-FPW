@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo, useCallback } from "react";
+import { createContext, useState, useMemo, useCallback, useEffect } from "react";
 import usuariosGuardados from "../assets/data/usuarios.json";
 
 // 1. Crea el contexto
@@ -6,7 +6,18 @@ export const AutorizacionesContext = createContext(null);
 
 // 2. Componente Provedor del contexto de autenticacion
 export function AutorizacionesProvider({ children }) {
-    const [user, setUser] = useState(null);
+    //const [user, setUser] = useState(null);
+
+    const [user, setUser] = useState(() => {
+        try {
+            const storedUser = localStorage.getItem("LOCAL_STORAGE_KEY")
+            return storedUser ? JSON.parse(storedUser) : null;
+        } catch (error) {
+            localStorage.removeItem("LOCAL_STORAGE_KEY");
+            return null;
+        }
+
+    });
 
     //solo con la intecion de pensar en cargas asincronas de datos o validaciones
     //const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +53,14 @@ export function AutorizacionesProvider({ children }) {
     const logout = useCallback(() => {
         setUser(null);
     }, []);
+
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem("LOCAL_STORAGE_KEY", JSON.stringify(user));
+        } else {
+            localStorage.removeItem("LOCAL_STORAGE_KEY");
+        }
+    }, [user]);
 
     /*
     useEffect(() => {

@@ -18,6 +18,14 @@
   margin-bottom: 10px;
 }
 
+
+.error-image {
+    width: 50%;
+    border-radius: 50px;
+    margin-top: 25px; 
+}
+
+
 .error-button {
   padding: 10px 20px;
   background-color: #007bff;
