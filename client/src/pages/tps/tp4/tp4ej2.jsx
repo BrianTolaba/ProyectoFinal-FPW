@@ -47,7 +47,7 @@ function BotonesColores() {
 
     <div className="Ejercicio02Botones">
       
-        <div className="col-md-6 m-3 bg-dark-subtle rounded-4 ">
+        <div className="col-md-6 m-3 bg-dark-subtle rounded-4 mx-auto mt-5">
           {botones.map((color, index) => (
             <button className='botones border border-4 border-black'
               key={index}
@@ -72,7 +72,7 @@ function BotonesColores() {
 
 
         <div className="col-md-6 ">
-          <h3>Colocar una imagen aqui :u</h3>
+          <h3></h3>
           <img src="" alt="" />
         </div>
     </div>

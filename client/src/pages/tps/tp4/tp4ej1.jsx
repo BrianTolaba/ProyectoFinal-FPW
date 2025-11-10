@@ -28,7 +28,7 @@ function TP4ej1() {
   };
 
   return (
-    <div className='ejercicio01contenedor'>
+    <div className='ejercicio01contenedor mt-5'>
       <div className="row">
         <div className="col-md-6 p-4 bg-dark-subtle h-50 rounded-4 ">
           <h1><strong>Adivina un numero del 1 al 100</strong></h1>

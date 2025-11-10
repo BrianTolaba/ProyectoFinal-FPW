@@ -7,6 +7,8 @@ const esquemaUsuario = new esquema({
     password: String,
     role: String,
     name: String,
+    nombre: String,
+    apellido: String,
     score: Number
 })
 

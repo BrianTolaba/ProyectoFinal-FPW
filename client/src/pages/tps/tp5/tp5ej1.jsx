@@ -56,7 +56,7 @@ function Tp5Ej1() {
   };
 
   return (
-    <div className="contenedor-juego ">
+    <div className="contenedor-juego mx-auto mt-5">
 
       <h1 className="col">🎮 Atrapa las Estrellas 🎮</h1>
       <p className="text-center">Puntaje: {puntaje}</p>

@@ -17,6 +17,7 @@ import Tp2Ej5 from './pages/tps/tp2/tp2ej5';
 import Tp3Ej1 from './pages/tps/tp3/tp3ej1';
 import Tp3Ej2 from './pages/tps/tp3/tp3ej2';
 import Registro from './pages/Registro';
+import Login from './pages/Login';
 
 import Tp4Ej1 from './pages/tps/tp4/tp4ej1';
 import Tp4Ej2 from './pages/tps/tp4/tp4ej2';
@@ -40,7 +41,11 @@ function App() {
             </ProtectorRutas>
           } />
           <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/formulario" element={<Formulario />} />
+          <Route path="/formulario" element={
+            <ProtectorRutas allowedRoles={['ADMINISTRATIVO']}>
+              <Formulario />
+            </ProtectorRutas>
+          } />
           <Route path="/tp2ej1" element={<Tp2Ej1 />} />
           <Route path="/tp2ej2" element={<Tp2Ej2 />} />
           <Route path="/tp2ej3" element={<Tp2Ej3 />} />
@@ -49,12 +54,17 @@ function App() {
           <Route path="/tp3ej1" element={<Tp3Ej1 />} />
           <Route path="/tp3ej2" element={<Tp3Ej2 />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<NoAutorizado />} />
           <Route path="/tp4ej1" element={<Tp4Ej1 />} />
           <Route path="/tp4ej2" element={<Tp4Ej2 />} />
           <Route path="/tp5ej1" element={<Tp5ej1 />} />
           <Route path="/tp5ej2" element={<Tp5ej2 />} />
-          <Route path="/questions" element={<Questions />} />
+          <Route path="/questions" element={
+            <ProtectorRutas allowedRoles={['ALUMNO', 'ADMINISTRATIVO']}>
+              <Questions />
+            </ProtectorRutas>
+          } />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
