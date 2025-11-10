@@ -140,7 +140,7 @@ function Questions() {
           <h4>Prueba definitiva</h4>
           <div className="w-auto ratio ratio-16x9 w-50">
             <iframe
-              src="https://www.youtube.com/embed/34mk2F4iff4?si=IaFx8vpu0biYUxE8"
+              src="https://www.youtube.com/embed/34mk2F4iff4?si=GEE1Rk-K8imQAbgj&amp;start=10"
               title="Prueba final"
               allowFullScreen
             ></iframe>

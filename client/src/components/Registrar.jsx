@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import axios from "axios"
 import { set } from 'mongoose';
 
-//const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-ZaA\d]{8,}$/;
+//const PASSWORD_REGEX = /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 // 2
 
@@ -12,7 +12,7 @@ const PASSWORD_REGEX = {
     uppercase: /(?=.*[A-Z])/,
     lowercase: /(?=.*[a-z])/,
     number: /(?=.*\d)/,
-    isValid: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-ZaA\d]{8,}$/
+    isValid: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/
 };
 
 function FormularioRegistro() {
@@ -34,7 +34,7 @@ function FormularioRegistro() {
         estado: true,
         role: 'ALUMNO',
     
-        horasDisponibles: '', // Nueva propiedad
+        horasDisponibles: '', 
         horarioDisponible: '', // Nueva propiedad: mañana/tarde/noche
         
         score:0,
@@ -162,7 +162,7 @@ function FormularioRegistro() {
                 onChange={manejarCambio}
                 placeholder="Ingrese su contraseña"
                 minLength="8"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-ZaA\d]{8,}$"
+                pattern="^(?=.[a-z])(?=.[A-Z])(?=.*\d)[A-Za-z\d]{8,}$"
             />
             <Form.Control.Feedback type="invalid">
                 La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número.
