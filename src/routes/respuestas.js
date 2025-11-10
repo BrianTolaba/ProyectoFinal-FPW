@@ -29,4 +29,28 @@ router.post('/registrarUsuario', async (req, res) => {
 
 });
 
-module.exports = router; 
+// Guardar respuestas del quiz y actualizar score del usuario
+router.post('/respuestas', async (req, res) => {
+    try {
+        const { username, score } = req.body;
+        if (!username || typeof score !== 'number') {
+            return res.status(400).json({ success: false, message: 'Username y score son requeridos.' });
+        }
+        // Aquí podrías guardar las respuestas en una colección separada si quieres
+        // Por ahora, solo actualizamos el score del usuario
+        const usuarioActualizado = await listaUsuarios.findOneAndUpdate(
+            { username },
+            { $set: { score } },
+            { new: true }
+        );
+        if (!usuarioActualizado) {
+            return res.status(404).json({ success: false, message: 'Usuario no encontrado.' });
+        }
+        res.json({ success: true, data: usuarioActualizado, message: 'Respuestas guardadas correctamente' });
+    } catch (error) {
+        console.error('Error al guardar respuestas:', error);
+        res.status(500).json({ success: false, message: 'Error interno del servidor.' });
+    }
+});
+
+module.exports = router;

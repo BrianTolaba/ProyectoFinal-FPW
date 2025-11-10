@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AutorizacionesContext } from '../../context/AutorizacionContex';
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container } from 'react-bootstrap';
 import Oso from '../../assets/imag/Oso.jpg';
 import Quiz from '../../assets/imag/Quiz.jpg';
 import Gato from '../../assets/imag/Gato.jpg';
 
-function Questions({ userId }) {
+import axios from 'axios';
+
+function Questions() {
   const navigate = useNavigate();
   const [juegoIniciado, setJuegoIniciado] = useState(false);
   const [formularioVisible, setFormularioVisible] = useState(true);
+  const { user, actualizarScore } = useContext(AutorizacionesContext);
   const [answers, setAnswers] = useState({
     Animal: '',
     vocabulary1: '',
@@ -18,6 +22,7 @@ function Questions({ userId }) {
     pruebaFinal: '',
   });
   const [score, setScore] = useState(null);
+  const [regError, setRegError] = useState('');
 
   const respuestasCorrectas = {
     Animal: 'Bear',
@@ -34,40 +39,38 @@ function Questions({ userId }) {
   };
 
   const handleSubmit = async (e) => {
+    setRegError('');
     e.preventDefault();
-
     let score = 0;
     for (const pregunta in respuestasCorrectas) {
       if (answers[pregunta] === respuestasCorrectas[pregunta]) {
         score += 1;
       }
     }
-
     setScore(score);
     setFormularioVisible(false);
+    // Actualizar el score global del usuario
+    actualizarScore(score);
 
-    // Enviar a MongoDB 
+    // Enviar a MongoDB con el score actualizado
     try {
-      const res = await fetch('http://localhost:5000/api/respuestas', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...answers,
-          puntajeTotal: score,
-          usuario: userId,
-        }),
-      });
-      const data = await res.json();
-      console.log('Respuesta guardada:', data);
-    } catch (error) {
-      console.error('Error al guardar en MongoDB:', error);
+      const res = await axios.post('/api/respuestas', { ...user, score });
+      if(res.data.success){
+        console.log('Puntaje Guardado en la BD')
+      } else {
+        setRegError(res.data.message|| 'Error al guardar el puntaje')
+      }
+    } catch (error){
+      console.error('Error al guardar puntaje o conexion', error);
+      setRegError(error.message || 'Fallo de conexion');
     }
-  };
+  }
+  
 
   return (
     <Container className="col-md-12 mt-4 text-center">
       {!juegoIniciado && (
-        <div className='col-12 pantallaDeInicio'>
+        <div className='col-12'>
           <img src={Quiz} alt="QUIZ IMAGEN" />
           <h1>Bienvenido al Cuestionario de Inglés</h1>
           <Button size='lg' onClick={() => setJuegoIniciado(true)}>COMENZAR</Button>
@@ -142,7 +145,7 @@ function Questions({ userId }) {
               allowFullScreen
             ></iframe>
           </div>
-          <Form.Group className="mb-3 m-4">
+          <Form.Group className="mb-3">
             <Form.Label>¿Conseguiste entender TODO el video?</Form.Label>
           <div>
             <Form.Check label="Por supuesto" name="pruebaFinal" value="Por supuesto" type="radio" checked={answers.pruebaFinal === 'Por supuesto'} onChange={handleChange} inline />

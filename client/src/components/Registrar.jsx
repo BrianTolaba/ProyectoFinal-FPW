@@ -32,7 +32,7 @@ function FormularioRegistro() {
         username: '',
         password: '',
         role: 'ALUMNO',
-        score: 0,
+        score:0,
     });
 
 
@@ -86,9 +86,9 @@ function FormularioRegistro() {
         }
     };
 
-const passwordInvalido = Object.values(erroresPassword).some(error => error);
+ const passwordInvalido = Object.values(erroresPassword).some(error => error);
 
-return (
+ return (
     <Form noValidate validated={validado} onSubmit={manejarSubmit} className="p-4" border rounded="4">
         <Row className="mb-3">
             <Form.Group as={Col} md="6" controlId="validacionNombre">
