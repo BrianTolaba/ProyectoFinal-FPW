@@ -19,7 +19,7 @@ function FormularioRegistro() {
 
     const [regError, setRegError] = useState('');
     const [validado, setValidado] = useState(false);
-    const [usuarios, setUsuarios] = useState([]);
+    //const [usuarios, setUsuarios] = useState([]);
     const [erroresPassword, setErroresPassword] = useState({
         minLength: false,
         uppercase: false,
@@ -31,10 +31,8 @@ function FormularioRegistro() {
         apellido: '',
         username: '',
         password: '',
-        estado: true,
-        role: 'ALUMNO'
-        //fechaNacimiento
-        //condicion
+        role: 'ALUMNO',
+        score:0,
     });
 
 
@@ -63,16 +61,12 @@ function FormularioRegistro() {
         const passwordValido = PASSWORD_REGEX.isValid.test(usuario.password);
 
         e.preventDefault();
-        //event.stopPropagation();
         if (form.checkValidity() === false || !passwordValido) {
             setValidado(true);
             alert('Error en el formulario de registro');
 
         } else {
             alert('Formulario enviado con exito ' + usuario.apellido);
-            //const nuevoUsuario = {
-            // id: Date.now(),
-            //...usuario
 
             try {
                 const response = await axios.post('/api/registrarUsuario', usuario);
@@ -91,18 +85,10 @@ function FormularioRegistro() {
             setErroresPassword({ minLength: false, uppercase: false, lowercase: false, number: false });
         }
     };
-    // Aqui iria lagica backend
-    //setUsuarios(prevLista => [...prevLista, nuevoUsuario]);
-    // setUsuario({ nombre: '', apellido: '', username: '', password: '' });
-    //setValidado(false);
-    // 2
-    /*
-    setErroresPassword({ minLength: false, uppercase: false, lowercase: false, number: false });
-    */
 
-const passwordInvalido = Object.values(erroresPassword).some(error => error);
+ const passwordInvalido = Object.values(erroresPassword).some(error => error);
 
-return (
+ return (
     <Form noValidate validated={validado} onSubmit={manejarSubmit} className="p-4" border rounded="4">
         <Row className="mb-3">
             <Form.Group as={Col} md="6" controlId="validacionNombre">
@@ -175,34 +161,3 @@ return (
 }
 
 export default FormularioRegistro;
-
-/*
-<Form.Group className="mb-3" controlId="validacionPassword">
-                <Form.Label>Contraseña</Form.Label>
-                <Form.Control
-                    required
-                    type="password"
-                    name="password"
-                    value={usuario.password}
-                    onChange={manejarCambio}
-                    placeholder="Ingrese su contraseña"
-                    isInvalid={validado && passwordValido}
-                />
-                <Form.Control.Feedback type="invalid" className={validado && passwordInvalido ? 'd-block' : ''}>
-                    <p className="mb-1 text-bold">La contraseña debe cumplir con:</p>
-
-                    <small className={erroresPassword.minLength ? 'text-danger' : 'text-success'}>
-                        {erroresPassword.minLength ? 'No cumple' : 'Cumple'} Al menos 8 caracteres.
-                    </small><br />
-                    <small className={erroresPassword.uppercase ? 'text-danger' : 'text-success'}>
-                        {erroresPassword.uppercase ? 'No cumple' : 'Cumple'} Al menos una letra mayúscula.
-                    </small><br />
-                    <small className={erroresPassword.lowercase ? 'text-danger' : 'text-success'}>
-                        {erroresPassword.lowercase ? 'No cumple' : 'Cumple'} Al menos una letra minúscula.
-                    </small><br />
-                    <small className={erroresPassword.number ? 'text-danger' : 'text-success'}>
-                        {erroresPassword.number ? 'No cumple' : 'Cumple'} Al menos un número.
-                    </small>
-                </Form.Control.Feedback>
-            </Form.Group>
-            */
