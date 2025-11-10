@@ -17,9 +17,9 @@ export const Login = () => {
     useEffect(() => {
         if (isAuthenticated) {
             if (user.role === "ADMINISTRATIVO") {
-                navigate("/formulario", { replace: true });
+                navigate("/", { replace: true });
             } else if (user.role === "ALUMNO") {
-                navigate("/aboutus", { replace: true });
+                navigate("/", { replace: true });
             } else {
                 navigate("/error", { replace: true });
             }
@@ -43,7 +43,7 @@ export const Login = () => {
     return (
         <Container
             fluid className="d-flex justify-content-center align-items-center"
-            style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
+            style={{ minHeight: "1vh" }}>
             <Card style={{ width: '100%', maxWidth: '400px' }} className="shadow-sm">
                 <Card.Body className="p-4">
                     <Card.Title as="h2" className="text-center mb-4">
@@ -74,6 +74,10 @@ export const Login = () => {
                         <Button variant="primary" type="submit" className="w-100 mt-3">
                             Iniciar Sesión
                         </Button>
+                        <Button variant="secondary" className="w-100 mt-3" onClick={() => navigate('/registro')}>
+                            Crear Cuenta
+                        </Button>
+                        
                     </Form>
                 </Card.Body>
             </Card>
