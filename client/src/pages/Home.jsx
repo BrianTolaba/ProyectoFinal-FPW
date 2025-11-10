@@ -1,9 +1,48 @@
-
+import { useAutorizacion } from '../hooks/useAutorizacion.js';
+import { useNavigate } from "react-router-dom";
+import Carousel from 'react-bootstrap/Carousel';
+import imagenMascota from '../assets/imag/Mascota.jpg';
+import imagenAdivinarNumero from '../assets/imag/Adivinar.png'
+import imagenEstrella from '../assets/imag/Estrella.png'
 
 function Home() {
+
+  const { user, isAuthenticated } = useAutorizacion();
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1>HOME</h1>
+      {!isAuthenticated && (
+        <>
+          <p>Inicia Sesion Aqui</p>
+          <p>Si no tienes cuenta, regisstrate</p>
+        </>
+      )}
+      {isAuthenticated && (
+        <p>-----------------</p>
+      )}
+      <h2 className='text-center'>Algunos trabajos anteriores</h2>
+      <Carousel className='mx-auto' style={{ maxWidth: '600px' }}>
+        <Carousel.Item onClick={() => navigate('/tp3ej2')}>
+          <img className="d-block w-100" src={imagenMascota} />
+          <Carousel.Caption>
+            <h3>Registro de Mascotas</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item onClick={() => navigate('/tp4ej1')}>
+          <img className="d-block w-100" src={imagenAdivinarNumero} />
+          <Carousel.Caption>
+            <h3>Adivina el número</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item onClick={() => navigate('/tp5ej1')}>
+          <img className="d-block w-100" src={imagenEstrella} />
+          <Carousel.Caption>
+            <h3>Atrapar la estrella</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 }

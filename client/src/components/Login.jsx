@@ -43,7 +43,7 @@ export const Login = () => {
     return (
         <Container
             fluid className="d-flex justify-content-center align-items-center"
-            style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
+            style={{ minHeight: "1vh" }}>
             <Card style={{ width: '100%', maxWidth: '400px' }} className="shadow-sm">
                 <Card.Body className="p-4">
                     <Card.Title as="h2" className="text-center mb-4">
