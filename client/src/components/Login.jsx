@@ -17,9 +17,9 @@ export const Login = () => {
     useEffect(() => {
         if (isAuthenticated) {
             if (user.role === "ADMINISTRATIVO") {
-                navigate("/formulario", { replace: true });
+                navigate("/", { replace: true });
             } else if (user.role === "ALUMNO") {
-                navigate("/aboutus", { replace: true });
+                navigate("/", { replace: true });
             } else {
                 navigate("/error", { replace: true });
             }
@@ -74,6 +74,10 @@ export const Login = () => {
                         <Button variant="primary" type="submit" className="w-100 mt-3">
                             Iniciar Sesión
                         </Button>
+                        <Button variant="primary" className="w-100 mt-3" onClick={() => navigate('/registro')}>
+                            Crear Cuenta
+                        </Button>
+                        
                     </Form>
                 </Card.Body>
             </Card>
