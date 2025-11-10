@@ -53,6 +53,7 @@ export function AutorizacionesProvider({ children }) {
     //solo con la intecion de pensar en cargas asincronas de datos o validaciones
     //const [isLoading, setIsLoading] = useState(false);
     //const [token, setToken] = useState(null);
+    
     const login = useCallback((credentials) => {
         console.log(usuariosBD);
         //setIsLoading(true); // se activa brevemente, luego se desactiva

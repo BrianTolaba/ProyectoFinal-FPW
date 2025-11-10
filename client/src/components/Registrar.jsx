@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import axios from "axios"
 import { set } from 'mongoose';
 
-//const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+//const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-ZaA\d]{8,}$/;
 
 // 2
 
@@ -12,7 +12,7 @@ const PASSWORD_REGEX = {
     uppercase: /(?=.*[A-Z])/,
     lowercase: /(?=.*[a-z])/,
     number: /(?=.*\d)/,
-    isValid: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/
+    isValid: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-ZaA\d]{8,}$/
 };
 
 function FormularioRegistro() {
@@ -31,7 +31,12 @@ function FormularioRegistro() {
         apellido: '',
         username: '',
         password: '',
+        estado: true,
         role: 'ALUMNO',
+    
+        horasDisponibles: '', // Nueva propiedad
+        horarioDisponible: '', // Nueva propiedad: mañana/tarde/noche
+        
         score:0,
     });
 
@@ -80,7 +85,16 @@ function FormularioRegistro() {
                 setRegError(error.message || 'fallo de conexion. Intentelo mas tarde');
             }
 
-            setUsuario({ nombre: '', apellido: '', username: '', password: '' });
+            setUsuario({
+                nombre: '',
+                apellido: '',
+                username: '',
+                password: '',
+                estado: true,
+                role: 'ALUMNO',
+                horasDisponibles: '',
+                horarioDisponible: ''
+            });
             setValidado(false);
             setErroresPassword({ minLength: false, uppercase: false, lowercase: false, number: false });
         }
@@ -148,16 +162,74 @@ function FormularioRegistro() {
                 onChange={manejarCambio}
                 placeholder="Ingrese su contraseña"
                 minLength="8"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-ZaA\d]{8,}$"
             />
             <Form.Control.Feedback type="invalid">
                 La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número.
             </Form.Control.Feedback>
         </Form.Group>
 
+
+        <Form.Group className="mb-3" controlId="validacionHorasDisponibles">
+            <Form.Label>¿Cuantas horas tienes disponibles para estudiar inglés?</Form.Label>
+            <Form.Control
+                required
+                type="number"
+                name="horasDisponibles"
+                value={usuario.horasDisponibles}
+                onChange={manejarCambio}
+                placeholder="Ingrese un número entero"
+                min="0"
+                step="1"
+            />
+            <Form.Control.Feedback type="invalid">
+                Por favor ingrese un número entero válido.
+            </Form.Control.Feedback>
+        </Form.Group>
+
+        {/* Nuevo bloque: horario disponible */}
+        <Form.Group className="mb-3" controlId="validacionHorarioDisponible">
+            <Form.Label>¿Qué horario tienes disponible para estudiar inglés?</Form.Label>
+            <div>
+                <Form.Check
+                    type="radio"
+                    label="Mañana"
+                    name="horarioDisponible"
+                    value="Mañana"
+                    checked={usuario.horarioDisponible === "Mañana"}
+                    onChange={manejarCambio}
+                    required
+                />
+                <Form.Check
+                    type="radio"
+                    label="Tarde"
+                    name="horarioDisponible"
+                    value="Tarde"
+                    checked={usuario.horarioDisponible === "Tarde"}
+                    onChange={manejarCambio}
+                    required
+                />
+                <Form.Check
+                    type="radio"
+                    label="Noche"
+                    name="horarioDisponible"
+                    value="Noche"
+                    checked={usuario.horarioDisponible === "Noche"}
+                    onChange={manejarCambio}
+                    required
+                />
+            </div>
+            <Form.Control.Feedback type="invalid">
+                Por favor selecciona una opción.
+            </Form.Control.Feedback>
+        </Form.Group>
+
         <Button type="submit">Registrar</Button>
     </Form>
+
+    
 );
+
 }
 
 export default FormularioRegistro;
