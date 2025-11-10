@@ -4,6 +4,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import imagenMascota from '../assets/imag/Mascota.jpg';
 import imagenAdivinarNumero from '../assets/imag/Adivinar.png'
 import imagenEstrella from '../assets/imag/Estrella.png'
+import Button from 'react-bootstrap/Button';
+
 
 function Home() {
 
@@ -12,17 +14,14 @@ function Home() {
 
   return (
     <div>
-      <h1>HOME</h1>
+      <h1></h1>
       {!isAuthenticated && (
-        <>
-          <p>Inicia Sesion Aqui</p>
-          <p>Si no tienes cuenta, regisstrate</p>
-        </>
+        <></>
       )}
       {isAuthenticated && (
-        <p>-----------------</p>
+        <></>
       )}
-      <h2 className='text-center'>Algunos trabajos anteriores</h2>
+      <h2 className='text-center mt-5'>Algunos trabajos anteriores</h2>
       <Carousel className='mx-auto' style={{ maxWidth: '600px' }}>
         <Carousel.Item onClick={() => navigate('/tp3ej2')}>
           <img className="d-block w-100" src={imagenMascota} />

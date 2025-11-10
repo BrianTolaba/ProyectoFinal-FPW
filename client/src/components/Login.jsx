@@ -74,7 +74,7 @@ export const Login = () => {
                         <Button variant="primary" type="submit" className="w-100 mt-3">
                             Iniciar Sesión
                         </Button>
-                        <Button variant="primary" className="w-100 mt-3" onClick={() => navigate('/registro')}>
+                        <Button variant="secondary" className="w-100 mt-3" onClick={() => navigate('/registro')}>
                             Crear Cuenta
                         </Button>
                         

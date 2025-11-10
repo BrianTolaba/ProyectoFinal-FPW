@@ -3,8 +3,8 @@ import { Login } from '../components/Login';
 
 function Registro() {
   return (
-    <Container>
-      <h1>Login</h1>
+    <Container className="mt-5">
+      <h1></h1>
       <Login />
     </Container>
   );

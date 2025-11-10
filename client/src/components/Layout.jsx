@@ -62,14 +62,14 @@ function Layout() {
                                     
                                 </NavDropdown>
                                 <Nav.Link href="/aboutus">Nosotros</Nav.Link>
-                                {isAuthenticated ?
-                                (<Button variant="outline-success" onClick={manejarLogout}>Cerrar Sesión</Button>)
-                                : (<Nav.Link href="/login">Iniciar Sesión</Nav.Link>)}
-                                {!isAuthenticated && (
-                                    <Nav.Link href="/registro">Crear Cuenta</Nav.Link>
-                                )}
                                 {isAuthenticated && (
                                     <Nav.Link href="/questions">Cuestionario de Inglés</Nav.Link>
+                                )}
+                                {isAuthenticated ?
+                                (<Button variant="success" onClick={manejarLogout}>Cerrar Sesión</Button>)
+                                : (<Button variant="primary" onClick={() => navigate('/login')}>Iniciar Sesión</Button>)}
+                                {!isAuthenticated && (
+                                    <Button variant="secondary" onClick={() => navigate('/registro')}>Crear Cuenta</Button>
                                 )}
                             </Nav>
                         </Navbar.Collapse>
