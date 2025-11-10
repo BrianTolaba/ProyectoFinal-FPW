@@ -3,7 +3,7 @@ import Archivos from "../../../assets/imag/tp-5-Archivos.jpg";
 function tp5ej2() {
   return (<>
 
-    <div className='text-center shadow-lg text-light bg-primary  rounded-4'>
+    <div className='text-center shadow-lg text-light bg-primary  rounded-4 mt-5'>
       <h1>FORMULARIO</h1>
       <h2>Ingrese su nombre de usuario y correo electronico</h2>
       <p>* este formulario es una prueba cerrada</p>
