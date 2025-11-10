@@ -9,11 +9,12 @@ app.get('/', (req, res) => {
 
 //routing
 const archivosDB = require ('./conection.js');
-const usuarios = require ('./src/model/usuarios.js');
+const usuarios = require ('./src/routes/usuariosRoutes.js');
 
 // modelo de datos
 
 //midleware
+app.use(express.json());
 app.use ('/api',usuarios);
 
 //listening

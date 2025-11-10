@@ -23,7 +23,7 @@ import Tp4Ej2 from './pages/tps/tp4/tp4ej2';
 
 import Tp5ej1 from './pages/tps/tp5/tp5ej1';
 import Tp5ej2 from './pages/tps/tp5/tp5ej2';
-
+import Questions from './pages/English/Questions';
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProtectorRutas from './components/ProtectorRutas';
 
@@ -54,7 +54,7 @@ function App() {
           <Route path="/tp4ej2" element={<Tp4Ej2 />} />
           <Route path="/tp5ej1" element={<Tp5ej1 />} />
           <Route path="/tp5ej2" element={<Tp5ej2 />} />
-          
+          <Route path="/questions" element={<Questions />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

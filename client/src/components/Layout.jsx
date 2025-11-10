@@ -48,8 +48,8 @@ function Layout() {
                                     <div className="dropdown-submenu">
                                         <span className="dropdown-item">Trabajo Practico 3</span>
                                         <div className="submenu">
-                                            <NavDropdown.Item href="/tp3ej1">Ejercicio 1</NavDropdown.Item>
-                                            <NavDropdown.Item href="/tp3ej2">Ejercicio 2</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp3ej1">Suma con X</NavDropdown.Item>
+                                            <NavDropdown.Item href="/tp3ej2">Registro de Mascotas</NavDropdown.Item>
                                         </div>
                                     </div>
 
@@ -73,6 +73,7 @@ function Layout() {
                                 <Nav.Link href="/aboutus">Nosotros</Nav.Link>
                                 <Nav.Link href="/formulario">Formulario</Nav.Link>
                                 <Nav.Link href="/registro">Registro</Nav.Link>
+                                <Nav.Link href="/questions">Cuestionario de Inglés</Nav.Link>
                                  {isAuthenticated ?
                                 (<Button variant="outline-success" onClick={manejarLogout}>Logout</Button>)
                                 : (<Nav.Link href="/">Login</Nav.Link>)}
