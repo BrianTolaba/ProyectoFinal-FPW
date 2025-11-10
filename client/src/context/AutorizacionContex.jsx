@@ -9,6 +9,23 @@ export const AutorizacionesContext = createContext(null);
 
 // 2. Componente Provedor del contexto de autenticacion
 export function AutorizacionesProvider({ children }) {
+    // Actualiza el score del usuario global y lo persiste
+    const actualizarScore = useCallback(async (nuevoScore) => {
+        let username;
+        setUser(prev => {
+            if (!prev) return prev;
+            username = prev.username;
+            const actualizado = { ...prev, score: nuevoScore };
+            localStorage.setItem("LOCAL_STORAGE_KEY", JSON.stringify(actualizado));
+            return actualizado;
+        });
+        // Actualizar en la base de datos
+        try {
+            await axios.put('/api/actualizarScore', { username, score: nuevoScore });
+        } catch (error) {
+            console.error('Error al actualizar score en backend:', error);
+        }
+    }, []);
 
     const [usuariosBD, setUsuariosBD] = useState([]);
 
@@ -88,7 +105,8 @@ export function AutorizacionesProvider({ children }) {
         isAuthenticated: !!user,
         login,
         logout,
-        usuariosBD
+        usuariosBD,
+        actualizarScore
     }), [user, login, logout, usuariosBD]);
 
     // 3. proveer el valor del contexto a los hijos

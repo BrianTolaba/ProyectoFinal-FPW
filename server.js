@@ -10,12 +10,14 @@ app.get('/', (req, res) => {
 //routing
 const archivosDB = require ('./conection.js');
 const usuarios = require ('./src/routes/usuariosRoutes.js');
+const respuestas = require ('./src/routes/respuestas.js');
 
 // modelo de datos
 
 //midleware
 app.use(express.json());
-app.use ('/api',usuarios);
+app.use ('/api', usuarios);
+app.use ('/api', respuestas);
 
 //listening
 app.listen(5000,() => {

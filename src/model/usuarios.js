@@ -5,8 +5,10 @@ const esquema = mongoose.Schema;
 const esquemaUsuario = new esquema({
     username: String,
     password: String,
-    rol: String,
+    role: String,
     name: String,
+    nombre: String,
+    apellido: String,
     score: Number
 })
 

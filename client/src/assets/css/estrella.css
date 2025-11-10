@@ -11,7 +11,8 @@ body {
 .contenedor-juego {
   text-align: center;
   position: relative;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   height: 500px;
   background-color: rgb(56, 56, 102);
   border-radius: 10%;
