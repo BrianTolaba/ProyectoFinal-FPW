@@ -5,6 +5,8 @@ import { Form, Button, Container } from 'react-bootstrap';
 import Oso from '../../assets/imag/Oso.jpg';
 import Quiz from '../../assets/imag/Quiz.jpg';
 import Gato from '../../assets/imag/Gato.jpg';
+import Mapache from '../../assets/imag/Mapache.jpg';
+import Buho from '../../assets/imag/Buho.jpg';
 
 import axios from 'axios';
 
@@ -15,6 +17,8 @@ function Questions() {
   const { user, actualizarScore } = useContext(AutorizacionesContext);
   const [answers, setAnswers] = useState({
     Animal: '',
+    Animal2: '',
+    Animal3: '',
     vocabulary1: '',
     vocabulary2: '',
     vocabulary3: '',
@@ -26,6 +30,8 @@ function Questions() {
 
   const respuestasCorrectas = {
     Animal: 'Bear',
+    Animal2: 'Racoon',
+    Animal3: 'Owl',
     vocabulary1: 'Pensamiento',
     vocabulary2: 'Escalon',
     vocabulary3: 'IN',
@@ -55,22 +61,22 @@ function Questions() {
     // Enviar a MongoDB con el score actualizado
     try {
       const res = await axios.post('/api/respuestas', { ...user, score });
-      if(res.data.success){
+      if (res.data.success) {
         console.log('Puntaje Guardado en la BD')
       } else {
-        setRegError(res.data.message|| 'Error al guardar el puntaje')
+        setRegError(res.data.message || 'Error al guardar el puntaje')
       }
-    } catch (error){
+    } catch (error) {
       console.error('Error al guardar puntaje o conexion', error);
       setRegError(error.message || 'Fallo de conexion');
     }
   }
-  
+
 
   return (
-    <Container className="col-md-12 mt-4 text-center">
+    <Container className="col-md-12 mt-4 text-center bg-dark-subtle rounded-5">
       {!juegoIniciado && (
-        <div className='col-12'>
+        <div className='col-12 bg-white rounded-5'>
           <img src={Quiz} alt="QUIZ IMAGEN" />
           <h1>Bienvenido al Cuestionario de Inglés</h1>
           <Button size='lg' onClick={() => setJuegoIniciado(true)}>COMENZAR</Button>
@@ -79,12 +85,13 @@ function Questions() {
 
       {juegoIniciado && formularioVisible && (
         <Form onSubmit={handleSubmit}>
-          <h3>Cuestionario de Inglés</h3>
-
+          <h1 className='mb-3 bg-secondary rounded-4'>Cuestionario de Inglés</h1>
+          <h3>Las siguientes preguntas fueror elaboradas con el fin de saber tu nivel de ingles.
+            Por favor responde sinceramente, ya que tus respuestas son de caracter juridico</h3>
           {/* Pregunta 1 */}
-          <img className="rounded-4 w-50 h-50" src={Oso} alt="Aqui deberia haber un oso" />
-          <Form.Group className="mb-3">
-            <Form.Label>¿Qué ves en la imagen de arriba?</Form.Label>
+          <img className="rounded-4 w-50 h-50 m-3 " src={Oso} alt="Aqui deberia haber un oso" />
+          <Form.Group className="mb-3 bg-secondary rounded-4 ">
+            <h3>¿Qué ves en la imagen de arriba?</h3>
             <div>
               <Form.Check label="Bear" name="Animal" value="Bear" type="radio" checked={answers.Animal === 'Bear'} onChange={handleChange} inline />
               <Form.Check label="Boar" name="Animal" value="Boar" type="radio" checked={answers.Animal === 'Boar'} onChange={handleChange} inline />
@@ -93,8 +100,8 @@ function Questions() {
           </Form.Group>
 
           {/* Pregunta 2 */}
-          <Form.Group className="mb-3">
-            <Form.Label>¿Que interpretacion usarias para la palabra "thought"?</Form.Label>
+          <Form.Group className="mb-3 bg-secondary rounded-4">
+            <h3>¿Que interpretacion usarias para la palabra "thought"?</h3>
             <div>
               <Form.Check label="A travez de..." name="vocabulary1" value="A travez de..." type="radio" checked={answers.vocabulary1 === 'A travez de...'} onChange={handleChange} inline />
               <Form.Check label="Aunque" name="vocabulary1" value="Aunque" type="radio" checked={answers.vocabulary1 === 'Aunque'} onChange={handleChange} inline />
@@ -105,19 +112,19 @@ function Questions() {
 
 
           {/* Pregunta 3 */}
-          <Form.Group className="mb-3">
-            <Form.Label>¿Puedes entender el siguiente dialogo? </Form.Label>
-            <Form.Label> I don't know what's happening, it worked on my computer.</Form.Label>
+          <Form.Group className="mb-3 bg-secondary rounded-4">
+             <h3>¿Puedes entender el siguiente dialogo? </h3>
+             <h3> "I don't know what's happening, it worked on my computer."</h3>
             <div>
               <Form.Check label="Sí" name="reading" value="Sí" type="radio" checked={answers.reading === 'Sí'} onChange={handleChange} inline />
               <Form.Check label="No" name="reading" value="No" type="radio" checked={answers.reading === 'No'} onChange={handleChange} inline />
-              
+
             </div>
           </Form.Group>
 
           {/* Pregunta 4 */}
-          <Form.Group className="mb-3">
-            <Form.Label>¿Que significa la palabra "Step"?</Form.Label>
+          <Form.Group className="mb-3 bg-secondary rounded-4">
+             <h3>¿Que significa la palabra "Step"?</h3>
             <div>
               <Form.Check label="Escalon" name="vocabulary2" value="Escalon" type="radio" checked={answers.vocabulary2 === 'Escalon'} onChange={handleChange} inline />
               <Form.Check label="Estepa" name="vocabulary2" value="Estepa" type="radio" checked={answers.vocabulary2 === 'Estepa'} onChange={handleChange} inline />
@@ -126,51 +133,74 @@ function Questions() {
             </div>
           </Form.Group>
           {/* Pregunta 5 */}
-          <img className="rounded-4" src={Gato} alt="Aqui deberia haber un Gato" />
-          <Form.Group className="mb-3">
-            <Form.Label>Con respecto a la imagen de arriba, que palabra usarias en:</Form.Label>
-            <p>The cat is ___ the box</p>
+          <img className="rounded-4 w-50 h-50 m-3 " src={Gato} alt="Aqui deberia haber un Gato" />
+          <Form.Group className="mb-3 bg-secondary rounded-4">
+            <h3>Con respecto a la imagen de arriba, que palabra usarias en:</h3>
+             <h3>The cat is ___ the box</h3>
             <div>
               <Form.Check label="AT" name="vocabulary3" value="AT" type="radio" checked={answers.vocabulary3 === 'AT'} onChange={handleChange} inline />
               <Form.Check label="IN" name="vocabulary3" value="IN" type="radio" checked={answers.vocabulary3 === 'IN'} onChange={handleChange} inline />
               <Form.Check label="ON" name="vocabulary3" value="ON" type="radio" checked={answers.vocabulary3 === 'ON'} onChange={handleChange} inline />
             </div>
           </Form.Group>
+
+          {/* Pregunta 6 */}
+          <img className="rounded-4 w-50 h-50 m-3" src={Mapache} alt="Aqui deberia haber un Machape" />
+          <Form.Group className="mb-3 bg-secondary rounded-4">
+           <h3>¿Qué ves en la imagen de arriba?</h3>
+            <div>
+              <Form.Check label="Cat" name="Animal2" value="Cat" type="radio" checked={answers.Animal2 === 'Cat'} onChange={handleChange} inline />
+              <Form.Check label="Hamster" name="Animal2" value="Hamster" type="radio" checked={answers.Animal2 === 'Hamster'} onChange={handleChange} inline />
+              <Form.Check label="Racoon" name="Animal2" value="Racoon" type="radio" checked={answers.Animal2 === 'Racoon'} onChange={handleChange} inline />
+            </div>
+          </Form.Group>
+
+          {/* Pregunta 7 */}
+          <img className="rounded-4 w-50 h-50 m-3" src={Buho} alt="Aqui deberia haber un Buho" />
+          <Form.Group className="mb-3 bg-secondary rounded-4">
+             <h3>¿Qué animal aparece en la imagen de arriba?</h3>
+            <div>
+              <Form.Check label="Noctambulant" name="Animal3" value="Noctambulant" type="radio" checked={answers.Animal3 === 'Noctambulant'} onChange={handleChange} inline />
+              <Form.Check label="Who" name="Animal3" value="Who" type="radio" checked={answers.Animal3 === 'Who'} onChange={handleChange} inline />
+              <Form.Check label="Owl" name="Animal3" value="Owl" type="radio" checked={answers.Animal3 === 'Owl'} onChange={handleChange} inline />
+            </div>
+          </Form.Group>
+
           {/* Pregunta FINAL */}
-          <h4>Prueba definitiva</h4>
+          <h3 className="mb-3 bg-secondary rounded-4" >Prueba definitiva</h3>
           <div className="w-auto ratio ratio-16x9 w-50">
             <iframe
-              src="https://www.youtube.com/embed/34mk2F4iff4?si=IaFx8vpu0biYUxE8"
+              src="https://www.youtube.com/embed/34mk2F4iff4?si=GEE1Rk-K8imQAbgj&amp;start=10"
               title="Prueba final"
               allowFullScreen
             ></iframe>
           </div>
-          <Form.Group className="mb-3">
-            <Form.Label>¿Conseguiste entender TODO el video?</Form.Label>
-          <div>
-            <Form.Check label="Por supuesto" name="pruebaFinal" value="Por supuesto" type="radio" checked={answers.pruebaFinal === 'Por supuesto'} onChange={handleChange} inline />
-            <Form.Check label="Nop" name="pruebaFinal" value="Nop" type="radio" checked={answers.pruebaFinal === 'Nop'} onChange={handleChange} inline />
-            <Form.Check label="😐" name="pruebaFinal" value="😐" type="radio" checked={answers.pruebaFinal === '😐'} onChange={handleChange} inline />
-          </div>
+          <Form.Group className="mb-3 bg-secondary rounded-4">
+             <h3>¿Conseguiste entender TODO el video?</h3>
+            <div>
+              <Form.Check label="Por supuesto" name="pruebaFinal" value="Por supuesto" type="radio" checked={answers.pruebaFinal === 'Por supuesto'} onChange={handleChange} inline />
+              <Form.Check label="Nop" name="pruebaFinal" value="Nop" type="radio" checked={answers.pruebaFinal === 'Nop'} onChange={handleChange} inline />
+              <Form.Check label="😐" name="pruebaFinal" value="😐" type="radio" checked={answers.pruebaFinal === '😐'} onChange={handleChange} inline />
+            </div>
           </Form.Group>
 
 
-          <Button type="submit">Calcular puntaje</Button>
+          <Button className="m-5" size='lg'type="submit">CALCULAR PUNTAJE</Button>
         </Form>
       )}
 
       {score !== null && (
         <div className="mt-4">
-          <h5>Puntaje total: {score} / 6</h5>
+          <h5>Puntaje total: {score} / 8</h5>
           <p>
-            {score === 6 ?'Wow, espera... en serio entendiste eso?'
-            : score === 5 ? '¡Excelente dominio del inglés!'
-              : score === 4 ? 'Buen nivel, pero puedes mejorar.'
-                : score === 3 ? 'Nivel intermedio, sigue practicando.'
-                  : score === 2 ? 'Nivel básico, no vendria mal un repaso.'
-                    : score === 1 ? 'Hay mucho con lo que trabajar.'
+            {score === 8 ? 'Wow, espera... en serio entendiste eso?'
+              : score === 7 || 6 ? '¡Excelente dominio del inglés!'
+                : score === 5 || 4 ? 'Buen nivel, pero puedes mejorar.'
+                  : score === 3 ? 'Nivel intermedio, sigue practicando.'
+                    : score === 2 ? 'Nivel básico, no vendria mal un repaso.'
+                      : score === 1 ? 'Hay mucho con lo que trabajar.'
 
-                : 'Bueno...'}
+                        : 'Bueno...'}
           </p>
           <Button onClick={() => navigate('/')}>Vorver a la pagina de inicio</Button>
         </div>
