@@ -6,10 +6,11 @@ const esquemaUsuario = new esquema({
     username: String,
     password: String,
     role: String,
-    name: String,
     nombre: String,
     apellido: String,
-    score: Number
+    score: Number,
+    horasDisponibles: Number,
+    horarioDisponible: String
 })
 
 module.exports = mongoose.model('users',esquemaUsuario);

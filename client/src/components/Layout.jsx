@@ -67,9 +67,9 @@ function Layout() {
                                 )}
                                 {isAuthenticated ?
                                 (<Button variant="secondary" onClick={manejarLogout}>Cerrar Sesión</Button>)
-                                : (<Button variant="primary" onClick={() => navigate('/login')}>Iniciar Sesión</Button>)}
+                                : (<Button variant="primary" href='/login'>Iniciar Sesión</Button>)}
                                 {!isAuthenticated && (
-                                    <Button variant="secondary" onClick={() => navigate('/registro')}>Crear Cuenta</Button>
+                                    <Button variant="secondary" href='/registro'>Crear Cuenta</Button>
                                 )}
                             </Nav>
                         </Navbar.Collapse>

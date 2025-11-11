@@ -3,8 +3,8 @@ import Registrar from "../components/Registrar.jsx";
 
 function Registro() {
   return (
-    <Container>
-      <h1>Registro</h1>
+    <Container className="mt-5">
+      <h1></h1>
       <Registrar />
     </Container>
   );
