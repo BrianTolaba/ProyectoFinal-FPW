@@ -17,8 +17,8 @@ function Layout() {
         <>
         
             <header>
-                <Navbar expand="lg" className="bg-body-tertiary ">
-                    <Container className='bg-warning w-100 '>
+                <Navbar expand="lg" className="bg-body-tertiary " >
+                    <Container className=' w-100 ' style={{ backgroundColor: '#fa7431ff'}}>
                         <Navbar.Brand href="/">Trabajo final</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -66,7 +66,7 @@ function Layout() {
                                     <Nav.Link href="/questions">Cuestionario de Inglés</Nav.Link>
                                 )}
                                 {isAuthenticated ?
-                                (<Button variant="success" onClick={manejarLogout}>Cerrar Sesión</Button>)
+                                (<Button variant="secondary" onClick={manejarLogout}>Cerrar Sesión</Button>)
                                 : (<Button variant="primary" onClick={() => navigate('/login')}>Iniciar Sesión</Button>)}
                                 {!isAuthenticated && (
                                     <Button variant="secondary" onClick={() => navigate('/registro')}>Crear Cuenta</Button>
