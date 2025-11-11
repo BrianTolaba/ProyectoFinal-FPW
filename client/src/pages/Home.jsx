@@ -4,6 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import imagenMascota from '../assets/imag/Mascota.jpg';
 import imagenAdivinarNumero from '../assets/imag/Adivinar.png'
 import imagenEstrella from '../assets/imag/Estrella.png'
+import imagenIngles from '../assets/imag/ingles.png'
 import Button from 'react-bootstrap/Button';
 
 
@@ -14,15 +15,16 @@ function Home() {
 
   return (
     <div>
-      <h1></h1>
-      {!isAuthenticated && (
-        <></>
-      )}
-      {isAuthenticated && (
-        <></>
-      )}
       <h2 className='text-center mt-5'>Algunos trabajos anteriores</h2>
       <Carousel className='mx-auto' style={{ maxWidth: '800px' }}>
+        {isAuthenticated && (
+        <Carousel.Item onClick={() => navigate('/questions')}>
+          <img className="d-block w-100" src={imagenIngles} />
+          <Carousel.Caption>
+            <h3>Cuestionario de Inglés</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+      )}
         <Carousel.Item onClick={() => navigate('/tp3ej2')}>
           <img className="d-block w-100" src={imagenMascota} />
           <Carousel.Caption>

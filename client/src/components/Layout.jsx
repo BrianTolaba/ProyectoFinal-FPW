@@ -63,7 +63,7 @@ function Layout() {
                                 </NavDropdown>
                                 <Nav.Link href="/aboutus">Nosotros</Nav.Link>
                                 {isAuthenticated && (
-                                    <Nav.Link href="/questions">Cuestionario de Inglés</Nav.Link>
+                                    <Button variant="primary"  href="/questions">Cuestionario de Inglés</Button>
                                 )}
                                 {isAuthenticated ?
                                 (<Button variant="secondary" onClick={manejarLogout}>Cerrar Sesión</Button>)
