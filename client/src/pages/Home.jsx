@@ -22,7 +22,7 @@ function Home() {
         <></>
       )}
       <h2 className='text-center mt-5'>Algunos trabajos anteriores</h2>
-      <Carousel className='mx-auto' style={{ maxWidth: '600px' }}>
+      <Carousel className='mx-auto' style={{ maxWidth: '800px' }}>
         <Carousel.Item onClick={() => navigate('/tp3ej2')}>
           <img className="d-block w-100" src={imagenMascota} />
           <Carousel.Caption>

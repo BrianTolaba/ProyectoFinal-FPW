@@ -31,7 +31,8 @@ import ProtectorRutas from './components/ProtectorRutas';
 function App() {
 
   return (
-    <Container>
+    <div style={{ backgroundColor: '#273cb4ff', minHeight: '100vh' }}>
+      <Container style={{ backgroundColor: '#ffffffff', minHeight: '100vh' }}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -68,7 +69,8 @@ function App() {
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
-    </Container>
+      </Container>
+    </div>
   )
 }
 export default App;
